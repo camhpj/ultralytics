@@ -415,7 +415,7 @@ class OpenvinoDataset(YOLODataset):
                     w, h = (min(math.ceil(w0 * r), self.imgsz), min(math.ceil(h0 * r), self.imgsz))
                     im = cv2.resize(im, (w, h), interpolation=cv2.INTER_LINEAR)
             else:
-                if isinstance(self.imgsz, tuple):
+                if isinstance(self.imgsz, list):
                     im = cv2.resize(im, (self.imgsz[0], self.imgsz[1]), interpolation=cv2.INTER_LINEAR)
                 else:
                     im = cv2.resize(im, (self.imgsz, self.imgsz), interpolation=cv2.INTER_LINEAR)
@@ -439,7 +439,7 @@ class OpenvinoDataset(YOLODataset):
             hyp.mixup = hyp.mixup if self.augment and not self.rect else 0.0
             transforms = v8_transforms(self, self.imgsz, hyp)
         else:
-            if isinstance(self.imgsz, tuple):
+            if isinstance(self.imgsz, list):
                 transforms = Compose([LetterBox(new_shape=(self.imgsz[0], self.imgsz[1]), scaleup=False)])
             else:
                 transforms = Compose([LetterBox(new_shape=(self.imgsz, self.imgsz), scaleup=False)])
