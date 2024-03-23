@@ -482,7 +482,7 @@ class Exporter:
                 )
 
             quantized_ov_model = nncf.quantize(
-                ov_model, quantization_dataset, preset=nncf.QuantizationPreset.PERFORMANCE, ignored_scope=ignored_scope
+                ov_model, quantization_dataset, preset=nncf.QuantizationPreset.MIXED, ignored_scope=ignored_scope
             )
             serialize(quantized_ov_model, fq_ov)
             return fq, None
